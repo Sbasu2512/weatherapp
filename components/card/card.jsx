@@ -1,31 +1,43 @@
 import React from "react";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, ListGroup } from "react-bootstrap";
 
-export default function Card() {
+export default function WeatherCard() {
   return (
-    <div>
-      <Card style={{ width: "350px", height: "50px", padding: "10px" }}>
+      <Card
+        className="white-bg"
+        style={{ width: "350px", height: "215px", padding: "10px" }}
+      >
         <Card.Title>Monday 14</Card.Title>
-        <Card.Img variant="top" src="holder.js/100px180" />
         <Card.Body>
-          <Card.Text>
+          
             <Row>
-              <Col xs={6}>
-                21 C
-                <br />
-                Cloudy
+              <Col xs={5}>
+                <Row>
+                  <Card.Img
+                    src="/icons/cloud/5.png"
+                    className="width-200"
+                  />
+                </Row>
+                <Row style={{ marginTop: "20px" }}>
+                 <Card.Text>
+                  21 C
+                  <br />
+                  Cloudy
+                 </Card.Text>
+                </Row>
               </Col>
-              <Col xs={6}>
-                Feels like
-                <br />
-                Humidity
-                <br />
-                Wind
+              <Col xs={7}  >
+                  
+                <ListGroup>
+                  <ListGroup.Item>Feels Like: 23</ListGroup.Item>
+                  <ListGroup.Item>Humidity: 90</ListGroup.Item>
+                  <ListGroup.Item>Wind Speed: 45km/h</ListGroup.Item>
+                </ListGroup>
+                 
               </Col>
             </Row>
-          </Card.Text>
+          
         </Card.Body>
       </Card>
-    </div>
   );
 }

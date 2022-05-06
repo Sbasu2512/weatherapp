@@ -16,4 +16,32 @@ a {
   box-sizing: border-box;
 }
 
+/* backgrounds */
 
+.white-bg{
+  background-color: #fff;
+}
+
+/* Width */
+
+.w-200{
+  width: 200px;
+}
+
+.w-350{
+width: 350px;
+}
+
+.w-370{
+  width: 370px;
+}
+
+.w-400{
+  width: 400px;
+}
+
+/* padding */
+
+.padding-10{
+  padding: 10px !important;
+}
