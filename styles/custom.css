@@ -1,0 +1,53 @@
+/* Layout */
+.container-layout{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: auto;
+    height: 100vh;
+    padding: 10px;
+    /* justify-items: center; */
+    justify-content: center;
+    column-gap: 10px;
+    margin: 1%;
+}
+
+.sidebar-layout{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    background-color: #85586f;
+    color: #fff;
+    padding: 70px;
+}
+
+.section{
+    background-color: #f8ecd1;
+    padding: 20px 20px;
+}
+
+/* Dashboard Component CSS */
+.flex{                      
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 30px;
+    align-content: center;
+  }
+
+span:hover{
+    text-decoration: underline;
+    color: #fff;
+}
+
+
+
+
+  
+  
