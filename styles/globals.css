@@ -80,8 +80,28 @@ width: 350px;
   width: 400px;
 }
 
+.w-700{
+  width: 700px;
+}
+
 /* padding */
 
 .padding-10{
   padding: 10px !important;
+}
+
+.padding-5{
+  padding: 5px
+}
+
+/* Margin */
+
+.margin-10{
+  margin: 10px;
+}
+
+/* Text Align Center */
+
+.text-center{
+  text-align: center;
 }
