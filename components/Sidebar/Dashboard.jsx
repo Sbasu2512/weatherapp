@@ -6,9 +6,9 @@ export default function Dashboard() {
       <>
     <div className="flex" >
       <span>
-          <p>Home</p>
+          <a href='/'>Home</a>
       </span>
-      <span> <p>To Do App</p> </span>
+      <span> <a href='/todo'>To Do App</a> </span>
       <span> <p>Contacts</p> </span>
       <span> <p>Diary</p> </span>
     </div>
