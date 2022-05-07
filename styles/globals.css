@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Macondo&family=Roboto+Flex:opsz,wght@8..144,300&display=swap');
 
 html,
 body {
@@ -14,6 +15,45 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+/* Fonts */
+.bold{
+  font-family: 'Koulen', cursive;
+}
+
+.basic{
+  font-family: 'Roboto Flex', sans-serif;
+}
+
+.quote{
+  font-family: 'Macondo', cursive;
+}
+
+/* Font Size */
+
+.font-10{
+  font-size: 10px;
+}
+
+.fone-15{
+  font-size: 15px;
+}
+
+.font-20{
+  font-size: 20px;
+}
+
+.font-25{
+  font-size: 25px;
+}
+
+.font-30{
+  font-size: 30px;
+}
+
+.font-50{
+  font-size: 50px
 }
 
 /* backgrounds */

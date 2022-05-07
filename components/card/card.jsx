@@ -5,7 +5,7 @@ export default function WeatherCard() {
   return (
       <Card
         className="white-bg"
-        style={{ width: "350px", height: "215px", padding: "10px" }}
+        style={{ width: "350px", height: "350px", padding: "10px" }}
       >
         <Card.Title>Monday 14</Card.Title>
         <Card.Body>
@@ -18,7 +18,7 @@ export default function WeatherCard() {
                     className="width-200"
                   />
                 </Row>
-                <Row style={{ marginTop: "20px" }}>
+                <Row style={{ marginTop: "60px" }}>
                  <Card.Text>
                   21 C
                   <br />
@@ -26,7 +26,7 @@ export default function WeatherCard() {
                  </Card.Text>
                 </Row>
               </Col>
-              <Col xs={7}  >
+              <Col xs={7} style={{marginTop:'80px'}} >
                   
                 <ListGroup>
                   <ListGroup.Item>Feels Like: 23</ListGroup.Item>
