@@ -8,9 +8,7 @@ export default function Dashboard() {
       <span>
           <a href='/'>Home</a>
       </span>
-      <span> <a href='/todo'>To Do App</a> </span>
-      <span> <p>Contacts</p> </span>
-      <span> <p>Diary</p> </span>
+      <span> <a href='/todo'>Tasks</a> </span>
     </div>
       </>
   );
