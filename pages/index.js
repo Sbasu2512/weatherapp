@@ -9,6 +9,7 @@ export default function Home() {
   };
 
   return (
+    <div className='section'>    
     <Row>
       <Col xs={8} style={{ height: "100vh" }}>
         <Row>
@@ -67,5 +68,6 @@ export default function Home() {
         <WeatherNews/>
       </Col>
     </Row>
+    </div>
   );
 }

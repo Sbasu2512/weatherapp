@@ -9,7 +9,7 @@ export default function Layout({children}) {
         <div className='sidebar-layout'>
             <Dashboard/>
         </div>
-        <div className='section'>
+        <div>
         {children}
         </div>
         </div>
