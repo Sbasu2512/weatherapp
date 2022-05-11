@@ -9,7 +9,7 @@ export default function TaskCard(props) {
     const handleChange = (e) => {
         const value = e.target.value;
         console.log(value)
-        // handleTask(value);
+        handleTask(value);
     }
   
     return (

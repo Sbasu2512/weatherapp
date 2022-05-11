@@ -13,7 +13,7 @@ const tasks = [
 ];
 export default function ToDO() {
   const [task, setTask] = useState("");
-  const completedTasks = [];
+  const [completedTasks, setCompletedTasks] = useState([]);
   // const taskList = [];
 const [taskList, setTaskList] = useState([]);
 
@@ -24,9 +24,10 @@ const [taskList, setTaskList] = useState([]);
       let incomplete_task = tasks.filter((task)=>{
         return task.is_completed === false
       })
+      // console.log('incompleteTask', incomplete_task, typeof incomplete_task)
       // taskList.push(incomplete_task);
       setTaskList(incomplete_task)
-    
+      setCompletedTasks(complete_task)
   }, []);
   
   const handleChange = (e) => {
@@ -45,6 +46,17 @@ const [taskList, setTaskList] = useState([]);
     console.log(toDo);
     tasks.push(toDo);
   };
+
+  const handleTask = (value) =>{
+    console.log('value', value)
+    
+    taskList.map((task)=>{
+      if(task.id == value){
+        task.is_completed = true;
+      }
+    })
+
+  }
   
   
   
@@ -71,11 +83,9 @@ const [taskList, setTaskList] = useState([]);
           style={{ backgroundColor: "#fff", marginTop: "10px", width: "100%" }}
           >
           <h2>Tasks</h2>
-          {console.log(taskList)}
-          {taskList.length > 0? (
-            taskList.map((task) => {
-              <TaskCard  task={task} />;
-            })
+          {console.log(taskList, typeof taskList)}
+          {taskList && taskList.length > 0? (
+            taskList.map((task) => <TaskCard  task={task} handleTask={handleTask} /> )
             ) : (
             <div> No More tasks left to do 😀 </div>
           )}
