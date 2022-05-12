@@ -26,7 +26,7 @@ const [taskList, setTaskList] = useState([]);
 
   useEffect(()=>{
       setTasks(tasksDb)
-  },[tasks,task])
+  },[tasks])
 
   // useEffect(() => {
   //   console.log('tasks', tasks)
@@ -76,7 +76,7 @@ const [taskList, setTaskList] = useState([]);
             <input
               type="textbox"
               className="padding-5"
-              onClick={handleChange}
+              onChange={handleChange}
               />
             <Button className="margin-10" type="submit" onClick={addTask}>
               Add
