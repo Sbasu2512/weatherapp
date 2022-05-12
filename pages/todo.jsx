@@ -3,40 +3,46 @@ import nextId from "react-id-generator";
 import { Row, Card, Button } from "react-bootstrap";
 import TaskCard from "../components/globals/task";
 
-const tasks = [
-  { id: "id1", value: "Hello", is_completed: false },
+const tasksDb = [
+  { id: "id1",
+   value: "Buy a laptop",
+  is_completed: false },
   {
-    id: "id4",
-    value: "Hello",
+    id: "id3",
+    value: "Buy a bike",
     is_completed: false,
   },
+  {
+    id: "id2",
+    is_completed: true,
+    value: "Read a book",
+  }
 ];
 export default function ToDO() {
   const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState(tasksDb);
   const [completedTasks, setCompletedTasks] = useState([]);
-  // const taskList = [];
 const [taskList, setTaskList] = useState([]);
 
-  useEffect(() => {
-      let complete_task = tasks.filter((task)=>{
-        return task.is_completed === true
-      })
-      let incomplete_task = tasks.filter((task)=>{
-        return task.is_completed === false
-      })
-      // console.log('incompleteTask', incomplete_task, typeof incomplete_task)
-      // taskList.push(incomplete_task);
-      setTaskList(incomplete_task)
-      setCompletedTasks(complete_task)
-  }, []);
+  useEffect(()=>{
+      setTasks(tasksDb)
+  },[tasks,task])
+
+  // useEffect(() => {
+  //   console.log('tasks', tasks)
+    
+  //   setTaskList(tasks.filter((task)=> task.is_completed === false))
+  //   setCompletedTasks(tasks.filter((task)=> task.is_completed === true))
+
+  // }, [tasks]);
   
   const handleChange = (e) => {
-    const value = e.target.value;
+    const value =  e.target.value;
+    console.log('value from handlechange', value)
     setTask(value);
   };
   
-  const addTask = () => {
-    console.log(task);
+  const addTask = (e) => {
     //adding task to the db and showing it in the UI
     const toDo = {
       id: nextId(),
@@ -44,18 +50,19 @@ const [taskList, setTaskList] = useState([]);
       is_completed: false,
     };
     console.log(toDo);
-    tasks.push(toDo);
+    // tasksDb.push(toDo);
+    setTasks(toDo)
+    console.log(tasks)
   };
 
   const handleTask = (value) =>{
     console.log('value', value)
-    
-    taskList.map((task)=>{
+    tasks.map((task)=>{
       if(task.id == value){
-        task.is_completed = true;
+       return {...task, is_completed:true}
       }
+      console.log('task after change', task)
     })
-
   }
   
   
@@ -69,7 +76,7 @@ const [taskList, setTaskList] = useState([]);
             <input
               type="textbox"
               className="padding-5"
-              onChange={handleChange}
+              onClick={handleChange}
               />
             <Button className="margin-10" type="submit" onClick={addTask}>
               Add
@@ -83,20 +90,14 @@ const [taskList, setTaskList] = useState([]);
           style={{ backgroundColor: "#fff", marginTop: "10px", width: "100%" }}
           >
           <h2>Tasks</h2>
-          {console.log(taskList, typeof taskList)}
-          {taskList && taskList.length > 0? (
-            taskList.map((task) => <TaskCard  task={task} handleTask={handleTask} /> )
+
+          {tasks && tasks.length > 0? (
+            tasks.map((task) => <TaskCard  task={task} handleTask={handleTask} /> )
             ) : (
             <div> No More tasks left to do 😀 </div>
           )}
         </div>
-        <div
-          className="flex"
-          style={{ backgroundColor: "#fff", marginTop: "10px", width: "100%" }}
-        >
-          <h2>Completed Tasks</h2>
-          <TaskCard />
-        </div>
+        
       </Row>
     </div>
   );
