@@ -24,9 +24,9 @@ export default function ToDO() {
   const [completedTasks, setCompletedTasks] = useState([]);
 const [taskList, setTaskList] = useState([]);
 
-  useEffect(()=>{
-      setTasks(tasksDb)
-  },[tasks])
+  // useEffect(()=>{
+  //     setTasks(tasksDb)
+  // },[tasks])
 
   // useEffect(() => {
   //   console.log('tasks', tasks)
@@ -38,33 +38,34 @@ const [taskList, setTaskList] = useState([]);
   
   const handleChange = (e) => {
     const value =  e.target.value;
-    console.log('value from handlechange', value)
+    // console.log('value from handlechange', value)
     setTask(value);
   };
   
   const addTask = (e) => {
+    e.preventDefault();
     //adding task to the db and showing it in the UI
     const toDo = {
       id: nextId(),
       value: task,
       is_completed: false,
     };
-    console.log(toDo);
+    // console.log(toDo);
     // tasksDb.push(toDo);
-    setTasks(toDo)
-    console.log(tasks)
+    setTasks(prev => [...prev, toDo])
   };
-
+  
   const handleTask = (value) =>{
-    console.log('value', value)
+    // console.log('value', value)
     tasks.map((task)=>{
       if(task.id == value){
-       return {...task, is_completed:true}
+        return {...task, is_completed:true}
       }
-      console.log('task after change', task)
+      // console.log('task after change', task)
     })
   }
   
+  console.log('task',tasks)
   
   
   return (
