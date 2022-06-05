@@ -1,11 +1,21 @@
+import React,{ useEffect, useState } from "react";
 import { Row, Col, Card } from "react-bootstrap";
 import WeatherCard from "../components/card/card";
 import SearchBar from "../components/globals/search";
 import WeatherNews from '../components/Weather News/weather_news'
 
 export default function Home() {
+
+  const [location, setLocation] = useState("")
+
+  useEffect(()=>{
+
+  },[location])
+
+  
   const handleLocation = (location) => {
-    console.log(location);
+    // console.log(location);
+    setLocation(location)
   };
 
   return (

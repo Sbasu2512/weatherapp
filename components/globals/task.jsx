@@ -2,11 +2,9 @@ import React, { useState } from "react";
 
 export default function TaskCard(props) {
 
-    const { handleTask, task } = props;
+  const { handleTask, task } = props;
 
     const [checked, setChecked] = useState(task.is_completed)
-
-    console.log('task', task)
 
     const handleChange = async (e) => {
         const value = await e.target.value;
@@ -18,7 +16,7 @@ export default function TaskCard(props) {
     }
   
     return (
-    <div>
+    <div className='basic font-20'>
       <input
         type="checkbox"
         value={task?.id}
@@ -26,6 +24,7 @@ export default function TaskCard(props) {
         style={{ borderRadius: "100%", }}
         checked={checked}
         disabled={checked}
+        
       />
       <label style={{ margin: "5px" }}>
         {" "}
