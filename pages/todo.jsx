@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import nextId from "react-id-generator";
 import { Row, Card, Button } from "react-bootstrap";
 import TaskCard from "../components/globals/task";
+import { addToDo } from "../redux/slice";
+import { useDispatch } from "react-redux";
 
 const tasksDb = [
   
@@ -11,7 +13,7 @@ export default function ToDO() {
   const [tasks, setTasks] = useState(tasksDb);
   const [completedTasks, setCompletedTasks] = useState([]);
 const [taskList, setTaskList] = useState([]);
-
+const dispatch = useDispatch();
 const resetTask = () => {
   setTask('')
 }
@@ -28,7 +30,8 @@ const handleChange = (e) => {
       value: task,
       is_completed: false,
     };
-    setTasks(prev => [...prev, toDo])
+    // setTasks(prev => [...prev, toDo])
+    dispatch(addToDo(toDo))
     resetTask();
   };
   
