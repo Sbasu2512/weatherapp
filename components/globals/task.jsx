@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { completeToDo } from "../../redux/slice";
@@ -15,7 +16,11 @@ export default function TaskCard(props) {
           setChecked(true);
           dispatch(completeToDo(value))
         }
+    }
 
+    const completeTodo = (e) => {
+      const value = e.target.value;
+      console.log(value)
     }
   
     return (

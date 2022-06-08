@@ -117,3 +117,11 @@ width: 350px;
 no-decoration{
   text-decoration: none;
 }
+
+.delete-btn{
+  height: 30px;
+    width: 30px;
+    border: none;
+    background-color: white;
+    margin-left: 160px;
+}
