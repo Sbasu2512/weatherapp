@@ -2,19 +2,28 @@ import React, { useEffect, useState } from "react";
 import nextId from "react-id-generator";
 import { Row, Card, Button } from "react-bootstrap";
 import TaskCard from "../components/globals/task";
-import { addToDo } from "../redux/slice";
+import { addToDo, completeToDo } from "../redux/slice";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const tasksDb = [
-  
-];
+// const tasksDb = [];
+
 export default function ToDO() {
+  const dispatch = useDispatch();
+  const tasksDb = useSelector((state) => state.list);
   const [task, setTask] = useState('');
-  const [tasks, setTasks] = useState(tasksDb);
   const [completedTasks, setCompletedTasks] = useState([]);
-const [taskList, setTaskList] = useState([]);
-const dispatch = useDispatch();
-const resetTask = () => {
+  const [taskList, setTaskList] = useState([]);
+  // console.log(tasksDb);
+  const [tasks, setTasks] = useState([]);
+
+  // useEffect(() => {
+  //   if(tasksDb){
+  //     setTasks(tasksDb)
+  //   }
+  // },[])
+
+  const resetTask = () => {
   setTask('')
 }
   
@@ -35,15 +44,10 @@ const handleChange = (e) => {
     resetTask();
   };
   
-  const handleTask = (value) =>{
-    tasks.map((task)=>{
-      if(task.id == value){
-        return {...task, is_completed:true}
-      }
-    })
-  }
-  
-  
+  // const handleTask = (value) =>{
+  //   // console.log(value)
+  //   dispatch(completeToDo(value))
+  // }
   
   return (
     <div className="section flex" style={{ width: "60%", margin: "150px" }}>
@@ -56,7 +60,7 @@ const handleChange = (e) => {
               className="padding-5"
               placeholder="Enter a task to add "
               onChange={handleChange}
-              />
+            />
             <Button className="margin-10 basic font-20" type="submit" onClick={addTask}>
               Add
             </Button>
@@ -70,8 +74,8 @@ const handleChange = (e) => {
           >
           <h2>Tasks</h2>
 
-          {tasks && tasks.length > 0? (
-            tasks.map((task) => <TaskCard  task={task} handleTask={handleTask} /> )
+          {tasksDb.length > 0? (
+            tasksDb.map((task) => (<TaskCard  task={task}  />) )
             ) : (
             <div className="basic font-30"> No More tasks left to do 😀 </div>
           )}

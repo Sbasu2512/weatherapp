@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { completeToDo } from "../../redux/slice";
 
 export default function TaskCard(props) {
 
   const { handleTask, task } = props;
+  const dispatch = useDispatch();
 
     const [checked, setChecked] = useState(task.is_completed)
 
@@ -10,7 +13,7 @@ export default function TaskCard(props) {
         const value = await e.target.value;
         if(task.id == value){
           setChecked(true);
-        handleTask(value);
+          dispatch(completeToDo(value))
         }
 
     }
@@ -26,7 +29,7 @@ export default function TaskCard(props) {
         disabled={checked}
         
       />
-      <label style={{ margin: "5px" }}>
+      <label style={{ margin: "5px" }} className = {checked? 'strikethrough':''}>
         {" "}
         {task?.value}
         {" "}

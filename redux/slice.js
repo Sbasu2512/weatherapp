@@ -9,9 +9,17 @@ const slice = createSlice({
         addToDo(state, action){
             // return [...state, action.payload]
             state.push(action.payload); 
+        },
+        completeToDo(state,action){
+            // console.log(action.payload);
+            state.map((item) => {
+                if(item.id == action.payload){
+                    item.is_completed = true
+                }
+            })
         }
     }
 })
 
-export const {addToDo} = slice.actions ;
+export const {addToDo, completeToDo} = slice.actions ;
 export default slice.reducer ;
