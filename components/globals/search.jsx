@@ -18,7 +18,7 @@ const handleSubmit = (e) => {
 
   return (
     <div style={{padding:'5px 50px'}} >
-      <input type="text" placeholder="search for a location" className="basic font-15" style={{ borderRadius: "20px", width: "600px", padding:'5px', margin:'5px' }} onChange={handleLocationChange} />
+      <input type="text" placeholder="Please enter City, Country e.g., Kolkata, India" className="basic font-15" style={{ borderRadius: "20px", width: "600px", padding:'5px', margin:'5px' }} onChange={handleLocationChange} />
       <button type="submit" style={{ border: "none", background: "#fff" }} onClick={handleSubmit} >
         <img
           src="/icons/search.svg"

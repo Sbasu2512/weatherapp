@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import nextId from "react-id-generator";
 import { Row, Card, Button } from "react-bootstrap";
 import TaskCard from "../components/globals/task";
-import { addToDo, completeToDo } from "../redux/slice";
+import { addToDo, completeToDo, getAllTasks } from "../redux/slice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 export default function ToDO() {
   const dispatch = useDispatch();
-  const tasksDb = useSelector((state) => state.list);
+  const tasksDb = useSelector(getAllTasks);
   const [task, setTask] = useState('');
   const [completedTasks, setCompletedTasks] = useState([]);
   const [taskList, setTaskList] = useState([]);

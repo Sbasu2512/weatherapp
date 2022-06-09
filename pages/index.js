@@ -3,23 +3,56 @@ import { Row, Col, Card } from "react-bootstrap";
 import WeatherCard from "../components/card/card";
 import SearchBar from "../components/globals/search";
 import WeatherNews from '../components/Weather News/weather_news'
-
+import { countryCodes } from "../countryCodes";
+import { fetchGeocode } from "../lib/weather";
 export default function Home() {
 
   const [location, setLocation] = useState("")
+  const [country, setCountry] = useState("")
+  const [countryCode, setCountryCode] = useState("")
 
   useEffect(()=>{
+    // let countryCode;
+    if(country !== ""){
+      countryCodes.map((item) => {
+        if(item.Name == country){
+          // countryCode = item.Code;
+          setCountryCode(item.Code);
+        }
+      })
+    }
+    // console.log(countryCode)
 
-  },[location])
+  },[location, country])
+
+  useEffect(()=>{
+    if(location !== '' && countryCode !== ''){
+      fetchGeocode(location,countryCode).then((res)=>{
+        console.log(res);
+      })
+    }
+  },[location, countryCode])
 
   
   const handleLocation = (location) => {
-    // console.log(location);
-    setLocation(location)
+    if(location !== ''){
+      const arr = location.split(/,|[ ]/).filter((item) => item !== '')
+      setLocation(arr[0])
+      
+      if(arr.length > 2){
+        let countryString = arr.slice(1,).join(' ');
+        
+        setCountry(countryString)
+      } else {
+        setCountry(arr[1])
+      }
+    }
+    
   };
 
   return (
     <div className='section'>    
+    {console.log(location,country)}
     <Row>
       <Col xs={8} style={{ height: "100vh" }}>
         <Row>

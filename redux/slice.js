@@ -22,4 +22,5 @@ const slice = createSlice({
 })
 
 export const {addToDo, completeToDo} = slice.actions ;
+export const getAllTasks = (state) => state.list
 export default slice.reducer ;
