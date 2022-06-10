@@ -5,6 +5,7 @@ import axios from "axios";
 export default async function handler(req, res) {
   // console.log('**',process.env.WEATHER_API)
   console.log("++", req.query);
+  let lat, lon, weatherData;
   const { location, countryCode } = req.query;
   // res.status(200).json({ name: 'request received' })
   const response = await axios
@@ -19,7 +20,6 @@ export default async function handler(req, res) {
         return `Error`;
       }
     });
-  let lat, lon;
   if (response !== "Error") {
     response.map((item) => {
       if (item.name.toLowerCase() == location.toLowerCase()) {
@@ -29,7 +29,18 @@ export default async function handler(req, res) {
         }
       }
     });
+  } else {
+    res.status(500).json('Internal Server Error');
   }
 
-  res.status(200).json(geolocation);
+  if(lat !== '' & lon  !==''){
+    weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API}`).then((res)=>{
+      return res.data
+    })
+  } else {
+    res.status(500).json('Internal Server Error');
+  }
+
+  res.status(200).json(weatherData);
+
 }

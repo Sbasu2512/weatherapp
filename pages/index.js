@@ -1,6 +1,7 @@
 import axios from "axios";
 import React,{ useEffect, useState } from "react";
 import { Row, Col, Card } from "react-bootstrap";
+import { resetId } from "react-id-generator";
 import WeatherCard from "../components/card/card";
 import SearchBar from "../components/globals/search";
 import WeatherNews from '../components/Weather News/weather_news'
@@ -30,24 +31,10 @@ import { countryCodes } from "../countryCodes";
 export default function Home({articles}) {
 
   const [location, setLocation] = useState("")
-  const [country, setCountry] = useState("")
   const [countryCode, setCountryCode] = useState("")
 
   useEffect(()=>{
-    // let countryCode;
-    if(country !== ""){
-      countryCodes.map((item) => {
-        if(item.Name.toLowerCase() == country.toLowerCase()){
-          // countryCode = item.Code;
-          setCountryCode(item.Code);
-        }
-      })
-    }
-    // console.log(countryCode)
-
-  },[location, country])
-
-  useEffect(()=>{
+    console.log(location, countryCode);
     if(location !== '' && countryCode !== ''){
       axios.get(`/api/hello`,{
         params:{
@@ -58,28 +45,41 @@ export default function Home({articles}) {
         console.log(res.data)
       })
     }
-  },[location, countryCode])
 
+    return () => {
+      setCountryCode("")
+      setLocation("")
+  }
+  },[location, countryCode])
   
   const handleLocation = (location) => {
+    let countryString ;
+    setLocation("");
+
     if(location !== ''){
       const arr = location.split(/,|[ ]/).filter((item) => item !== '')
       setLocation(arr[0])
       
       if(arr.length > 2){
-        let countryString = arr.slice(1,).join(' ');
-        
-        setCountry(countryString)
+        countryString = arr.slice(1,).join(' ');
       } else {
-        setCountry(arr[1])
+        countryString = arr[1];
       }
     }
-    
+
+    if(countryString !== ""){
+      countryCodes.map((item) => {
+        if(item.Name.toLowerCase() == countryString.toLowerCase()){
+          // countryCode = item.Code;
+          setCountryCode("")
+          setCountryCode(item.Code);
+        }
+      })
+    }
   };
 
   return (
     <div className='section'>    
-    {console.log(location,country)}
     <Row>
       <Col xs={8} style={{ height: "100vh" }}>
         <Row>
