@@ -1,11 +1,33 @@
+import axios from "axios";
 import React,{ useEffect, useState } from "react";
 import { Row, Col, Card } from "react-bootstrap";
 import WeatherCard from "../components/card/card";
 import SearchBar from "../components/globals/search";
 import WeatherNews from '../components/Weather News/weather_news'
 import { countryCodes } from "../countryCodes";
-import { fetchGeocode } from "../lib/weather";
-export default function Home() {
+// import { fetchGeocode } from "../lib/weather";
+
+// export const getServerSideProps = async (context) => {
+//   const weather_key=process.env.WEATHER_API;
+// const geo_url = process.env.GEOCODING_API;
+
+  // console.log(process.env.WEATHER_API);
+
+//   console.log(context.params);
+
+  // let location = context.params.location;
+  // let country = context.params.country;
+
+  // const res = await fetch(`${geo_url}/geo/1.0/direct?q=${location},${country}&appid=${weather_key}`)
+  // const articles = await res.json()
+
+//   return {
+//     props: {
+      // articles,
+//     },
+//   }
+// }
+export default function Home({articles}) {
 
   const [location, setLocation] = useState("")
   const [country, setCountry] = useState("")
@@ -15,7 +37,7 @@ export default function Home() {
     // let countryCode;
     if(country !== ""){
       countryCodes.map((item) => {
-        if(item.Name == country){
+        if(item.Name.toLowerCase() == country.toLowerCase()){
           // countryCode = item.Code;
           setCountryCode(item.Code);
         }
@@ -27,8 +49,13 @@ export default function Home() {
 
   useEffect(()=>{
     if(location !== '' && countryCode !== ''){
-      fetchGeocode(location,countryCode).then((res)=>{
-        console.log(res);
+      axios.get(`/api/hello`,{
+        params:{
+          location:location,
+          countryCode: countryCode,
+        }
+      }).then((res)=>{
+        console.log(res.data)
       })
     }
   },[location, countryCode])

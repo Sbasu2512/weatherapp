@@ -16,6 +16,7 @@
 /build
 
 # misc
+next.config.js
 .DS_Store
 *.pem
 
