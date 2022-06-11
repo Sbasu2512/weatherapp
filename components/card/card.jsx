@@ -2,10 +2,15 @@ import React from "react";
 import { Card, Row, Col, ListGroup } from "react-bootstrap";
 
 const unixToTime = (milsecs) => {
-  console.log(milsecs);
-  const newDate = new Date(milsecs);
-  console.log(newDate);
-  return newDate.getHours();
+  const newDate = new Date(milsecs * 1000);
+  const hours = newDate.getHours();
+
+  if(hours > 12){
+    return `${(hours) - 12} PM`;
+  } 
+  if(hours < 12) {
+    return `${hours} AM`;
+  }
 }
 
 
@@ -29,16 +34,16 @@ export default function WeatherCard(props) {
                     {weatherData?.weather[Array.length-1]?.description.charAt(0).toUpperCase() + weatherData?.weather[Array.length-1]?.description.slice(1)}
                    </Card.Text>
                   </Row>
-                <Row>
+                <Row style={{ marginTop: "25px" }}>
                   {/* <Card.Img
                     src="/icons/cloud/5.png"
                     className="width-200"
                   /> */}
                    <ListGroup>
-                <ListGroup.Item>Sunrise: {unixToTime(weatherData?.sys?.sunrise)} AM </ListGroup.Item>
-                <ListGroup.Item>Sunset: {unixToTime(weatherData?.sys?.sunset)} PM </ListGroup.Item>
+                <ListGroup.Item>Sunrise: {unixToTime(weatherData?.sys?.sunrise)} </ListGroup.Item>
+                <ListGroup.Item>Sunset: {unixToTime(weatherData?.sys?.sunset)} </ListGroup.Item>
                 
-                <ListGroup.Item>Updated At: {unixToTime(weatherData?.dt)}  </ListGroup.Item>
+                <ListGroup.Item>Updated At: {unixToTime(weatherData?.dt)}</ListGroup.Item>
                 </ListGroup>
                 </Row>
               </Col>
