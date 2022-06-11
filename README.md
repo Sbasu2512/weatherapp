@@ -39,4 +39,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## First Looks
 
-[Image 1](./screenshot/weather.png)
+[Image 1](https://github.com/Sbasu2512/weatherapp/blob/main/screenshot/weather.png)
+[Image 2](https://github.com/Sbasu2512/weatherapp/blob/main/screenshot/todo.png)
