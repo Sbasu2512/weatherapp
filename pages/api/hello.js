@@ -33,12 +33,16 @@ export default async function handler(req, res) {
     res.status(500).json('Internal Server Error');
   }
 
-  if(lat !== '' & lon  !==''){
-    weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API}`).then((res)=>{
-      return res.data
-    })
+  if ((lat !== "") & (lon !== "")) {
+    weatherData = await axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API}&units=metric`
+      )
+      .then((res) => {
+        return res.data;
+      });
   } else {
-    res.status(500).json('Internal Server Error');
+    res.status(500).json("Internal Server Error");
   }
 
   res.status(200).json(weatherData);

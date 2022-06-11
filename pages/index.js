@@ -32,6 +32,7 @@ export default function Home({articles}) {
 
   const [location, setLocation] = useState("")
   const [countryCode, setCountryCode] = useState("")
+  const [weatherData, setWeatherData] = useState(null)
 
   useEffect(()=>{
     console.log(location, countryCode);
@@ -42,7 +43,9 @@ export default function Home({articles}) {
           countryCode: countryCode,
         }
       }).then((res)=>{
-        console.log(res.data)
+        // console.log(res.data)
+        setWeatherData({})
+        setWeatherData(res.data)
       })
     }
 
@@ -91,20 +94,22 @@ export default function Home({articles}) {
               </Row>
               <Row></Row>
               <Row>
-                <Col xs={4}>
+                {console.log(weatherData)}
+                { weatherData && weatherData !== null ?
+                 ( <Col xs={4}>
                   <Card.Body>
                     <Card.Title className="basic font-20">
-                      New York, US{" "}
+                      {weatherData.name}, {weatherData.sys?.country} {" "}
                     </Card.Title>
                     <div>
-                      <p className="bold font-50">84 F</p>
+                      <p className="bold font-50">{weatherData.main?.temp} C</p>
 
-                      <p className="basic font-15">Feels like 79F</p>
+                      <p className="basic font-15">Feels like {weatherData.main?.feels_like} C</p>
 
-                      <p className="basic font-30">Partly Cloudy</p>
+                      <p className="basic font-30"> {weatherData.weather[Array.length-1]?.description} </p>
                     </div>
                   </Card.Body>
-                </Col>
+                </Col>) : <Col><Row><p>Please enter a place to search for its weather</p></Row></Col>}
                 <Col xs={8}>
                   <p
                     className="bold font-50"
@@ -126,12 +131,12 @@ export default function Home({articles}) {
           </section>
         </Row>
         <Row style={{ marginTop: "40px", gap: "70px" }}>
-          <Col xs={5}>
-            <WeatherCard />
+          <Col xs={10}>
+            <WeatherCard weatherData={weatherData} />
           </Col>
-          <Col xs={5}>
+          {/* <Col xs={5}>
             <WeatherCard />
-          </Col>
+          </Col> */}
         </Row>
       </Col>
       <Col xs={4} className="news">
