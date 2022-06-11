@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Description
+
+It is a weather App, News App and ToDoList App. I have used Redux for global state management. It is a weather App which comes with news and to do list. It has two API's linked currently, weather API and news API. 
+
 ## Getting Started
 
 First, run the development server:
