@@ -3,8 +3,7 @@
 import axios from "axios";
 
 export default async function handler(req, res) {
-  console.log("**", req.query);  
-  console.log(process.env.NEWS_SECRET);
+ 
   const { countryCode } = req.query;
   
   if(countryCode !== ''){
