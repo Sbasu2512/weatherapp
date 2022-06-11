@@ -1,40 +1,26 @@
 import React from 'react';
 import { Row, Col, Card, } from "react-bootstrap";
 
-export default function WeatherNews(){
-    return(
+export default function WeatherNews(props){
+    const {news} = props;
+    // console.log('i m news', news)  
+    
+  return(
         <div>
             <Card className="news-card">
           <Card.Title>News</Card.Title>
-          <Card.Body>
+          {
+            news.map(data => 
+          (<Card.Body>
             <Card.Subtitle>
-            New 1
+            {data.title}
             </Card.Subtitle>
+            <br/>
             <Card.Text>
-              In publishing and graphic design, Lorem ipsum is a placeholder
-              text commonly used to demonstrate the visual form of a document or
-              a typeface without relying on meaningful content. Lorem ipsum may
-              be used as a placeholder before final copy is available.
+              {data.description}
             </Card.Text>
-          </Card.Body>
-          <Card.Body>
-           <Card.Subtitle>New 2</Card.Subtitle>
-          <Card.Text>
-              In publishing and graphic design, Lorem ipsum is a placeholder
-              text commonly used to demonstrate the visual form of a document or
-              a typeface without relying on meaningful content. Lorem ipsum may
-              be used as a placeholder before final copy is available.
-            </Card.Text>
-          </Card.Body>
-          <Card.Body>
-          <Card.Subtitle>New 3</Card.Subtitle>
-          <Card.Text>
-              In publishing and graphic design, Lorem ipsum is a placeholder
-              text commonly used to demonstrate the visual form of a document or
-              a typeface without relying on meaningful content. Lorem ipsum may
-              be used as a placeholder before final copy is available.
-            </Card.Text>
-          </Card.Body>
+          </Card.Body>))
+          }
         </Card>
         </div>
     )

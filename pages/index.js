@@ -28,14 +28,14 @@ import { countryCodes } from "../countryCodes";
 //     },
 //   }
 // }
-export default function Home({articles}) {
+export default function Home() {
 
   const [location, setLocation] = useState("")
   const [countryCode, setCountryCode] = useState("")
   const [weatherData, setWeatherData] = useState(null)
+  const [newsData, setNewsData] = useState([])
 
   useEffect(()=>{
-    console.log(location, countryCode);
     if(location !== '' && countryCode !== ''){
       axios.get(`/api/hello`,{
         params:{
@@ -49,11 +49,19 @@ export default function Home({articles}) {
       })
     }
 
-    return () => {
-      setCountryCode("")
-      setLocation("")
-  }
   },[location, countryCode])
+
+  useEffect(() => {
+    axios.get(`api/news`,{
+      params:{
+        countryCode: countryCode,
+      }
+    }).then((res)=>{
+      // console.log(res.data.results)
+      setNewsData([])
+      setNewsData(res.data.results.slice(0,3))
+    })
+  },[countryCode])
   
   const handleLocation = (location) => {
     let countryString ;
@@ -94,7 +102,6 @@ export default function Home({articles}) {
               </Row>
               <Row></Row>
               <Row>
-                {console.log(weatherData)}
                 { weatherData && weatherData !== null ?
                  ( <Col xs={4}>
                   <Card.Body>
@@ -140,7 +147,7 @@ export default function Home({articles}) {
         </Row>
       </Col>
       <Col xs={4} className="news">
-        <WeatherNews/>
+        <WeatherNews news={newsData} />
       </Col>
     </Row>
     </div>

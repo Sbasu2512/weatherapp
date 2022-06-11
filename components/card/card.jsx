@@ -4,13 +4,8 @@ import { Card, Row, Col, ListGroup } from "react-bootstrap";
 const unixToTime = (milsecs) => {
   const newDate = new Date(milsecs * 1000);
   const hours = newDate.getHours();
-
-  if(hours > 12){
-    return `${(hours) - 12} PM`;
-  } 
-  if(hours < 12) {
-    return `${hours} AM`;
-  }
+  // console.log('hours',hours)
+  return hours
 }
 
 
@@ -40,10 +35,10 @@ export default function WeatherCard(props) {
                     className="width-200"
                   /> */}
                    <ListGroup>
-                <ListGroup.Item>Sunrise: {unixToTime(weatherData?.sys?.sunrise)} </ListGroup.Item>
-                <ListGroup.Item>Sunset: {unixToTime(weatherData?.sys?.sunset)} </ListGroup.Item>
+                <ListGroup.Item>Sunrise: {unixToTime(weatherData?.sys?.sunrise)}:00 hours</ListGroup.Item>
+                <ListGroup.Item>Sunset: {unixToTime(weatherData?.sys?.sunset)}:00 hours</ListGroup.Item>
                 
-                <ListGroup.Item>Updated At: {unixToTime(weatherData?.dt)}</ListGroup.Item>
+                <ListGroup.Item>Updated At: {unixToTime(weatherData?.dt)}:00 hours</ListGroup.Item>
                 </ListGroup>
                 </Row>
               </Col>
